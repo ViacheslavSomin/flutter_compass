@@ -122,10 +122,7 @@ public final class FlutterCompassPlugin implements FlutterPlugin, StreamHandler 
                     // This makes it possible to use a different indicator for the unreliable case,
                     // instead of just changing the RenderMode to NORMAL.
                 }
-                if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-                    rotationVectorValue = getRotationVectorFromSensorEvent(event);
-                    updateOrientation();
-                } else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER && !isCompassSensorAvailable()) {
+                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER && !isCompassSensorAvailable()) {
                     gravityValues = lowPassFilter(getRotationVectorFromSensorEvent(event), gravityValues);
                     updateOrientation();
                 } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD && !isCompassSensorAvailable()) {
